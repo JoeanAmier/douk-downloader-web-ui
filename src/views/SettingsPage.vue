@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import SettingsPage from './views/SettingsPage.vue';
+import SettingsItem from '@/components/SettingsItem.vue'
 </script>
 
 <template>
-  <SettingsPage />
+  <SettingsItem />
 </template>
 
 <style scoped></style>
