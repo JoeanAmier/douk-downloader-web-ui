@@ -26,11 +26,11 @@ const switchValue = computed({
 </script>
 
 <template>
-  <el-row :gutter="12" align="middle">
-    <el-col :span="8">
+  <el-row>
+    <el-col :span="18">
       <el-text size="large">{{ text }}</el-text>
     </el-col>
-    <el-col :span="4">
+    <el-col :span="6" class="justify-center">
       <el-switch
         v-model="switchValue"
         :id="params"
@@ -41,3 +41,10 @@ const switchValue = computed({
     </el-col>
   </el-row>
 </template>
+
+<style scoped>
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+</style>

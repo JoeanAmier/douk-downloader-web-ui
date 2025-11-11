@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import SettingsPage from './views/SettingsPage.vue';
+import AppIndex from '@/views/AppIndex.vue'
 </script>
 
 <template>
-  <SettingsPage />
+  <AppIndex />
 </template>
 
 <style scoped></style>
