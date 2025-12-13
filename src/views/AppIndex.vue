@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ElContainer, ElHeader, ElAside, ElMain, ElText, ElAvatar, ElBacktop } from 'element-plus'
+import { ElAside, ElAvatar, ElBacktop, ElContainer, ElHeader, ElMain, ElText } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import { ref, shallowRef } from 'vue'
 import SettingsPage from '@/views/SettingsPage.vue'
@@ -11,9 +11,9 @@ const menuItems = [
   { key: 'about', label: t('关于项目'), component: AboutPage },
 ]
 // 当前激活的菜单项
-const activeMenu = ref('about')
+const activeMenu = ref('settings')
 // 当前显示的组件
-const currentComponent = shallowRef(AboutPage)
+const currentComponent = shallowRef(SettingsPage)
 
 // 处理菜单点击
 const handleMenuSelect = (key: string) => {
@@ -37,7 +37,7 @@ const handleMenuSelect = (key: string) => {
         <el-text size="large" style="margin-left: 15px">DouK Downloader Web UI</el-text>
       </el-header>
       <el-container>
-        <el-aside width="200px"
+        <el-aside width="15%"
           ><el-menu :default-active="activeMenu" @select="handleMenuSelect" class="aside-menu">
             <el-menu-item v-for="item in menuItems" :key="item.key" :index="item.key">
               {{ t(item.label) }}
@@ -45,7 +45,7 @@ const handleMenuSelect = (key: string) => {
           </el-menu></el-aside
         >
         <el-container>
-          <el-main>
+          <el-main width="55%">
             <component :is="currentComponent" />
             <el-backtop :right="100" :bottom="100" />
           </el-main>
