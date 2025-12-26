@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { ElSwitch, ElCol, ElRow, ElText } from 'element-plus'
+import { ElCol, ElRow, ElSwitch, ElText } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -27,7 +27,10 @@ const switchValue = computed({
 
 <template>
   <el-row>
-    <el-col :span="18">
+    <el-col :span="6" class="justify-center">
+      <el-text size="large">{{ params }}</el-text>
+    </el-col>
+    <el-col :span="12" class="justify-center">
       <el-text size="large">{{ text }}</el-text>
     </el-col>
     <el-col :span="6" class="justify-center">
@@ -43,8 +46,5 @@ const switchValue = computed({
 </template>
 
 <style scoped>
-.justify-center {
-  display: flex;
-  justify-content: center;
-}
+@import '@/assets/styles/Settings.css';
 </style>

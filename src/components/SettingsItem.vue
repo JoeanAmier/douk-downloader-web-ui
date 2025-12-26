@@ -19,11 +19,13 @@ const handleSelect = (key: string) => {
 const current_settings = {
   music: ref(true),
   desc_length: ref(100),
+  folder_name: ref('Download'),
 }
 
 const project_settings = {
   music: true,
   desc_length: 100,
+  folder_name: 'Download',
 }
 
 // Web UI 配置处理函数
@@ -42,19 +44,21 @@ const handleWebUIDiscard = () => {
 }
 
 // 全局配置处理函数
-const handleUpdate = (key: keyof typeof current_settings, val: boolean | number) => {
+const handleUpdate = (key: keyof typeof current_settings, val: boolean | number | string) => {
   current_settings[key].value = val
 }
 
 const handleSave = () => {
   project_settings.music = current_settings.music.value
   project_settings.desc_length = current_settings.desc_length.value
+  project_settings.folder_name = current_settings.folder_name.value
   ElMessage.success(t('全局配置已保存'))
 }
 
 const handleDiscard = () => {
   current_settings.music.value = project_settings.music
   current_settings.desc_length.value = project_settings.desc_length
+  current_settings.folder_name.value = project_settings.folder_name
   ElMessage.info(t('全局配置已恢复为默认配置'))
 }
 </script>
@@ -109,8 +113,10 @@ const handleDiscard = () => {
       <GeneralSettings
         :music="current_settings.music.value"
         :desc_length="current_settings.desc_length.value"
+        :folder_name="current_settings.folder_name.value"
         @update:music="(val) => handleUpdate('music', val)"
         @update:desc_length="(val) => handleUpdate('desc_length', val)"
+        @update:folder_name="(val) => handleUpdate('folder_name', val)"
         @save="handleSave"
         @discard="handleDiscard"
       />

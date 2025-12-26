@@ -34,11 +34,8 @@ const handleDiscard = (): boolean => {
 </template>
 
 <style scoped>
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+@import '@/assets/styles/Settings.css';
+
 .button-row {
   margin-top: 20px;
 }

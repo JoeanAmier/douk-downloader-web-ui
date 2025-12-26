@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import BoolItem from '@/components/settings/BoolItem.vue'
 import NumberItem from '@/components/settings/NumberItem.vue'
-import ButtonItem from '@/components/settings/ButtonItem.vue'
-import { ElCol, ElRow } from 'element-plus'
+import StringItem from '@/components/settings/StringItem.vue'
+import ButtonGroup from '@/components/settings/ButtonGroup.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -10,11 +10,13 @@ const { t } = useI18n()
 interface Props {
   music: boolean
   desc_length: number
+  folder_name: string
 }
 
 interface Emits {
   (e: 'update:music', value: boolean): void
   (e: 'update:desc_length', value: number): void
+  (e: 'update:folder_name', value: string): void
   (e: 'save'): void
   (e: 'discard'): void
 }
@@ -28,6 +30,10 @@ const handleDescLengthUpdate = (val: number) => {
   emit('update:desc_length', val)
 }
 
+const handleFolderNameUpdate = (val: string) => {
+  emit('update:folder_name', val)
+}
+
 const handleSave = () => {
   emit('save')
 }
@@ -38,6 +44,13 @@ const handleDiscard = () => {
 </script>
 
 <template>
+  <StringItem
+    :text="t('下载链接作品时保存文件夹的名称')"
+    params="folder_name"
+    :value="folder_name"
+    placeholder="Download"
+    @update:value="handleFolderNameUpdate"
+  ></StringItem>
   <BoolItem
     :text="t('是否下载作品音乐')"
     params="music"
@@ -45,27 +58,15 @@ const handleDiscard = () => {
     @update:value="handleMusicUpdate"
   />
   <NumberItem
-    :text="t('描述字段长度限制')"
+    :text="t('文件名称描述字段长度限制')"
     params="desc_length"
     :value="desc_length"
     :unit="t('字符')"
     @update:value="handleDescLengthUpdate"
   />
-  <el-row>
-    <el-col class="center button-row">
-      <ButtonItem :text="t('保存配置')" type="primary" @click="handleSave" />
-      <ButtonItem :text="t('放弃更改')" type="info" @click="handleDiscard" />
-    </el-col>
-  </el-row>
+  <ButtonGroup :save="handleSave" :discard="handleDiscard" />
 </template>
 
 <style scoped>
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.button-row {
-  margin-top: 20px;
-}
+@import '@/assets/styles/Settings.css';
 </style>

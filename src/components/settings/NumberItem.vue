@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { ElInput, ElCol, ElRow, ElText } from 'element-plus'
+import { ElCol, ElInput, ElRow, ElText } from 'element-plus'
 
 interface Props {
   text: string
@@ -24,18 +24,21 @@ const inputValue = computed({
 </script>
 
 <template>
-  <el-row align="middle">
-    <el-col :span="18">
+  <el-row>
+    <el-col :span="6" class="justify-center">
+      <el-text size="large">{{ params }}</el-text>
+    </el-col>
+    <el-col :span="12" class="justify-center">
       <el-text size="large">{{ text }}</el-text>
     </el-col>
     <el-col :span="6">
-      <el-input
-        v-model="inputValue"
-        :id="params"
-        size="large"
-      >
-      <template #append>{{ unit }}</template>
+      <el-input v-model="inputValue" :id="params" size="large">
+        <template #append>{{ unit }}</template>
       </el-input>
     </el-col>
   </el-row>
 </template>
+
+<style scoped>
+@import '@/assets/styles/Settings.css';
+</style>
